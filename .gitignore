@@ -1,0 +1,21 @@
+## [ Visual Studio ]
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.sln.docstates
+
+## [ User-specific settings ]
+appsettings.json
+appsettings.Development.json
+
+## [ Entity Framework ]
+*.db
+*.db-shm
+*.db-wal
+
+## [ Others ]
+.DS_Store
+
+appsettings.json
