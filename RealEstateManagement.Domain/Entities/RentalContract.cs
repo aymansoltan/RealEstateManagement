@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealEstateManagement.Domain.Entities
 {
-    public class RentalContract : BaseEntity
+    public class RentalContract : AuditableEntity
     {
 
 

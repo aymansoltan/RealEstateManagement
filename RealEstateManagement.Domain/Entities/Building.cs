@@ -11,7 +11,7 @@ namespace RealEstateManagement.Domain.Entities
         public string Name { get; set; }
         public string Address { get; set; }
         public int BuildingNumber { get; set; }
-
+        
         public Guid OwnerId { get; set; }
         public Owner? Owner { get; set; }
 
