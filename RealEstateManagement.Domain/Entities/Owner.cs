@@ -11,6 +11,7 @@ namespace RealEstateManagement.Domain.Entities
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
 
+        public string IdentityUserId { get; set; }
         public ICollection<Building> Buildings { get; set; } = new List<Building>();
 
     }

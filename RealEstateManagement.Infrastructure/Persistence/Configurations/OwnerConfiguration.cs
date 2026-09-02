@@ -1,11 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RealEstateManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace RealEstateManagement.Infrastructure.Persistence.Configurations
 {
@@ -23,6 +20,17 @@ namespace RealEstateManagement.Infrastructure.Persistence.Configurations
                 .WithOne(b => b.Owner)
                 .HasForeignKey(b => b.OwnerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(o => o.IdentityUserId)
+                .IsRequired();
+
+            builder.HasIndex(o => o.IdentityUserId)
+                .IsUnique();
+
+            builder.HasOne<IdentityUser>()
+                .WithMany()
+                .HasForeignKey(o => o.IdentityUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

@@ -1,14 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RealEstateManagement.Application.Interfaces;
 using RealEstateManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstateManagement.Infrastructure.Persistence
 {
-    public class RealEstateManagementDbContext : DbContext
+    public class RealEstateManagementDbContext : IdentityDbContext<IdentityUser> , IRealEstateManagementDbContext
     {
         public RealEstateManagementDbContext(DbContextOptions<RealEstateManagementDbContext> options) : base(options)
         {   
