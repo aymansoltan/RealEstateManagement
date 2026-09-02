@@ -1,19 +1,18 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using RealEstateManagement.Application.Interfaces;
+using RealEstateManagement.Application.Interfaces.Repository;
 using RealEstateManagement.Domain.Entities;
-
 
 namespace RealEstateManagement.Application.Features.Owners.Command.RegisterOwner
 {
     public class RegisterOwnerCommandHandler : IRequestHandler<RegisterOwnerCommand , string>
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IRealEstateManagementDbContext _context;
-        public RegisterOwnerCommandHandler(UserManager<IdentityUser> UserManager, IRealEstateManagementDbContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        public RegisterOwnerCommandHandler(UserManager<IdentityUser> UserManager,  IUnitOfWork unitOfWork )
         {
             _userManager = UserManager;
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
         public async Task<string> Handle(RegisterOwnerCommand request, CancellationToken cancellationToken)
         {
@@ -36,8 +35,8 @@ namespace RealEstateManagement.Application.Features.Owners.Command.RegisterOwner
                     IdentityUserId = identityUser.Id
                 };
 
-                _context.Owners.Add(owner);
-                await _context.SaveChangesAsync(cancellationToken);
+                await _unitOfWork.Owners.AddAsync(owner);
+                await _unitOfWork.CompleteAsync(cancellationToken);
                 return owner.Id.ToString();
             }
             else

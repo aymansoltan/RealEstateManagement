@@ -32,11 +32,6 @@ namespace RealEstateManagement.Controllers
             return Ok(new { Token = token });
         }
 
-        [Authorize]
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            return Ok("You are authenticated");
-        }
+       
     }
 }

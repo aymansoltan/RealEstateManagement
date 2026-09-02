@@ -6,7 +6,7 @@ using RealEstateManagement.Domain.Entities;
 
 namespace RealEstateManagement.Infrastructure.Persistence
 {
-    public class RealEstateManagementDbContext : IdentityDbContext<IdentityUser> , IRealEstateManagementDbContext
+    public class RealEstateManagementDbContext : IdentityDbContext<IdentityUser>
     {
         public RealEstateManagementDbContext(DbContextOptions<RealEstateManagementDbContext> options) : base(options)
         {   
