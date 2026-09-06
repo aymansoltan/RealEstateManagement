@@ -1,5 +1,7 @@
 
 
+global using System.Text.Json.Serialization;
+
 namespace RealEstateManagement.Application.Features.Buildings.Command
 {
     public class CreateBuildingCommand :IRequest<Guid>

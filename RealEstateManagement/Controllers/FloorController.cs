@@ -49,6 +49,5 @@ namespace RealEstateManagement.Controllers
             var floors = await _mediator.Send(query);
             return Ok(floors);
         }
-        Œ«—ÿ… «·ÿ—Ìﬁ ··‹ CRUD «·ﬂ«„· ··”Ì” „(Business Flow)
     }
 }

@@ -4,6 +4,7 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text;
 global using System.Threading.Tasks;
+using RealEstateManagement.Application.DTO.UnitDto;
 using Unit = RealEstateManagement.Domain.Entities.Unit;
 
 namespace RealEstateManagement.Application.Mapping.UnitMapping

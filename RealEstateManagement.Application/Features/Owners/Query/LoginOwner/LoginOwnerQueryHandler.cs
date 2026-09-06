@@ -1,4 +1,6 @@
 
+using RealEstateManagement.Application.Interfaces;
+
 namespace RealEstateManagement.Application.Features.Owners.Query.LoginOwner
 {
     public class LoginOwnerQueryHandler : IRequestHandler<LoginOwnerQuery, string>
