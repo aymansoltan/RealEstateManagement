@@ -17,7 +17,7 @@ namespace RealEstateManagement.Extensions
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(RegisterOwnerCommand).Assembly));
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }

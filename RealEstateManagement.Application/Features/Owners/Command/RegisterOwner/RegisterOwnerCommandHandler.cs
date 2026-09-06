@@ -1,17 +1,18 @@
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using RealEstateManagement.Application.Interfaces.Repository;
-using RealEstateManagement.Domain.Entities;
+
+
+global using Microsoft.AspNetCore.Identity;
 
 namespace RealEstateManagement.Application.Features.Owners.Command.RegisterOwner
 {
     public class RegisterOwnerCommandHandler : IRequestHandler<RegisterOwnerCommand , string>
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IGenericRepository<Owner> _ownerRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public RegisterOwnerCommandHandler(UserManager<IdentityUser> UserManager,  IUnitOfWork unitOfWork )
+        public RegisterOwnerCommandHandler(UserManager<IdentityUser> UserManager ,  IGenericRepository<Owner> ownerRepository , IUnitOfWork unitOfWork )
         {
             _userManager = UserManager;
+            _ownerRepository = ownerRepository;
             _unitOfWork = unitOfWork;
         }
         public async Task<string> Handle(RegisterOwnerCommand request, CancellationToken cancellationToken)
@@ -25,8 +26,7 @@ namespace RealEstateManagement.Application.Features.Owners.Command.RegisterOwner
 
             var result =await _userManager.CreateAsync(identityUser, request.Password);
 
-            if (result.Succeeded
-                )
+            if (result.Succeeded)
             {
                 var owner = new Owner
                 {
@@ -35,7 +35,7 @@ namespace RealEstateManagement.Application.Features.Owners.Command.RegisterOwner
                     IdentityUserId = identityUser.Id
                 };
 
-                await _unitOfWork.Owners.AddAsync(owner);
+                await _ownerRepository.AddAsync(owner);
                 await _unitOfWork.CompleteAsync(cancellationToken);
                 return owner.Id.ToString();
             }
